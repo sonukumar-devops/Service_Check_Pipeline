@@ -25,8 +25,8 @@ jobs:
       - name: Push Service Image
         run: docker push sonukumardevops/service-app:latest
 
-      - name: Built Checker Image
-        run: docker build -f Dockerfile.checker -t sonukymardevops/service-checker:latest .
+      - name: Build Checker Image
+        run: docker build -f Dockerfile.checker -t sonukumardevops/service-checker:latest .
 
       - name: Push Checker Image
         run: docker push sonukumardevops/service-checker:latest
