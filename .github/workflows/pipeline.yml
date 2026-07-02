@@ -19,14 +19,19 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Service Image
-        run: docker build -f Dockerfile.service -t sonukumardevops/service-app:latest .
+      - name: Build and Push Service Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.service
+          push: true
+          tags: sonukumardevops/service-app:latest
 
-      - name: Push Service Image
-        run: docker push sonukumardevops/service-app:latest
+      - name: Build and push Checker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.checker
+          push: true
+          tags: sonukumardevops/service-checker:latest
 
-      - name: Build Checker Image
-        run: docker build -f Dockerfile.checker -t sonukumardevops/service-checker:latest .
-
-      - name: Push Checker Image
-        run: docker push sonukumardevops/service-checker:latest
