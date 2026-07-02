@@ -1,0 +1,5 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY service2.py .
+EXPOSE 5000
+CMD ["python", "service2.py"]

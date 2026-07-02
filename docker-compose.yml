@@ -1,0 +1,13 @@
+services:
+  app:       #builds service (service2.sh)
+    build:
+      context: .  # we are using two different Dockerfiles for both images so context is required instead of build
+      dockerfile: Dockerfile.service
+
+  checker: 
+    build:
+      context: .
+      dockerfile: Dockerfile.checker
+    depends_on:  # waits for app to start
+      - app
+    command: sh -c "sleep 2 && python health_checker2.py"

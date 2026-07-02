@@ -1,0 +1,5 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY health_checker2.py .
+RUN ["pip", "install", "requests"]
+CMD ["python", "health_checker2.py"]
